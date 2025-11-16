@@ -8,6 +8,10 @@ const IMAGE_PATH = '/images/avatar';
 type AvatarVariantMeta = { bg: string; iconSrc: string };
 
 const AVATAR_VARIANTS: Record<AvatarVariantKey, AvatarVariantMeta> = {
+  none: {
+    bg: 'bg-yellow-400',
+    iconSrc: `${IMAGE_PATH}/default.svg`,
+  },
   default: {
     bg: 'bg-yellow-400',
     iconSrc: `${IMAGE_PATH}/default.svg`,

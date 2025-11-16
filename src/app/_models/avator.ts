@@ -1,4 +1,5 @@
 export type AvatarVariantKey =
+  | 'none'
   | 'default'
   | 'strawberry'
   | 'matcha'
