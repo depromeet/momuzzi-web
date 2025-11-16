@@ -10,7 +10,7 @@ import ProfileSelector from '@/app/survey/_components/ui/selector/ProfileSelecto
 import { useProfileValidation } from '@/app/survey/_hooks/useProfileValidation';
 
 interface SurveyProfileStepProps {
-  onNext: (payload: { name: string; profileKey: string }) => void;
+  onNext: (payload: { name: string; profileKey: string }) => Promise<void> | void;
   onCancel: () => void;
   initialValue?: string;
   initialProfileKey?: string;
@@ -20,9 +20,9 @@ interface SurveyProfileStepProps {
 }
 
 /** SurveyProfileStep
- * - 이름 / 프로필 색상 선택 단계
- * - 닉네임 및 프로필 중복 검증
- * - 검증 통과 시 프로필 저장 후 다음 단계 이동
+ * - 닉네임/프로필 색상 입력
+ * - 기본 텍스트 규칙만 검증 (중복 허용)
+ * - 저장 후 다음 단계(or 완료)로 이동
  */
 const SurveyProfileStep = ({
   onNext,
@@ -31,27 +31,27 @@ const SurveyProfileStep = ({
   initialProfileKey = 'default',
   title = '사용하실 프로필과\n이름을 알려주세요',
   description = '다음 단계로 넘어가면 수정할 수 없어요.',
-  meetingId, // TODO: 실제 모임 ID 전달받기
+  meetingId,
 }: SurveyProfileStepProps) => {
   const [name, setName] = useState(initialValue);
   const [profileKey, setProfileKey] = useState(initialProfileKey);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // NOTE: 닉네임/색상 중복 검사를 임시로 비활성화한 상태입니다.
   const { error, setError, validateNickname, handleApiError } = useProfileValidation();
 
-  /** 프로필 저장 + 다음 단계 이동 */
   const handleNext = async () => {
     const nicknameError = validateNickname(name);
     if (nicknameError) return setError(nicknameError);
 
     try {
       setIsSubmitting(true);
+      const normalizedColor =
+        profileKey === 'sweetPotato' ? 'SWEET_POTATO' : profileKey.toUpperCase();
       await surveyApi.putAttendeeProfile(meetingId, {
         attendeeNickname: name.trim(),
-        color: profileKey.toUpperCase(),
+        color: normalizedColor,
       });
-      onNext({ name, profileKey });
+      await onNext({ name, profileKey });
     } catch (e) {
       handleApiError();
     } finally {
@@ -72,9 +72,10 @@ const SurveyProfileStep = ({
         <ProfileSelector value={profileKey} onChange={setProfileKey} />
         <Input
           value={name}
-          onChange={(e) => {
-            setName(e.target.value);
-            setError(validateNickname(e.target.value));
+          onChange={(event) => {
+            const { value } = event.target;
+            setName(value);
+            setError(validateNickname(value));
           }}
           onClear={() => setName('')}
           hasError={!!error}

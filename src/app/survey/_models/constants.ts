@@ -1,6 +1,6 @@
 import { STEP_KEYS, type StepKey } from './types';
 
-export const SURVEY_TOTAL_STEPS = 2; // Name / Prefer
+export const SURVEY_TOTAL_STEPS = 2; // Prefer / Name
 export const MAX_SELECT_COUNT = 5; // 설문 선택 최대 5개
 
 /** 숫자 스텝 인덱스(1-base) ↔ 스텝키 매핑 유틸 */

@@ -28,7 +28,7 @@ const StepFormLayout = ({
   return (
     <main className="relative flex h-[100dvh] flex-1 flex-col">
       {/* 제목 */}
-      <div className="pt-4 pb-8">
+      <div className="pt-4">
         <TitleGroup title={title} description={description} />
       </div>
 
@@ -37,7 +37,7 @@ const StepFormLayout = ({
 
       <div className="sticky bottom-0 flex w-full flex-col">
         {showNotice && <CuisineNoticeFrame />}
-        <div className="flex gap-3 bg-orange-50 pt-3 pb-6">
+        <div className="flex gap-3 bg-orange-50 py-3">
           {onCancel && (
             <Button theme="gray" onClick={onCancel} className="w-[114px]">
               {prevButtonText}

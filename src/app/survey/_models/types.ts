@@ -6,8 +6,8 @@
 export type RoleLabel = '참여자' | '주최자';
 
 export const STEP_KEYS = [
-  'Name', // 이름 입력
-  'PreferCuisine', // 선호하는 음식 선택
+  'PreferCuisine', // prefer cuisine selection
+  'Name', // attendee profile
   'DislikeCuisine', // 비선호하는 음식 선택
   'Review', // 선택 결과 확인
   'Complete', // 완료
@@ -31,6 +31,7 @@ export interface CommonCtx {
 
   /** 선택은 id 배열로 관리 */
   preferCuisineIds: string[];
+  preferCategoryIds: number[];
   dislikeCuisineIds: string[];
 
   /** 스텝별 '기타' 입력값 */

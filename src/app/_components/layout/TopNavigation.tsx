@@ -151,7 +151,7 @@ const TopNavigation = ({
   return (
     <div
       className={cn(
-        'sticky top-0 z-10 flex w-full shrink-0 items-center justify-between bg-inherit p-4 text-orange-800',
+        'sticky top-0 z-10 flex w-full shrink-0 items-center justify-between bg-inherit px-4 pt-2 pb-2 text-orange-800',
         className
       )}
     >
