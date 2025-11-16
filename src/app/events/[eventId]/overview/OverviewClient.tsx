@@ -34,6 +34,7 @@ const OverviewClient = () => {
   } = useQuery<MeetingOverview, ApiError>({
     ...getOverviewQueryOptions(Number(eventId)),
     retry: false,
+    refetchInterval: 4000,
   });
 
   useEffect(() => {
