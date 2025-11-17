@@ -12,6 +12,7 @@ interface RestaurantImageGalleryProps {
   imageClassName?: string;
   isScrollable?: boolean;
   imagePriority?: boolean;
+  imageSkeleton?: string;
   onImageChange?: (index: number) => void;
 }
 
@@ -22,7 +23,7 @@ const RestaurantImageGallery = ({
   imageClassName,
   imagePriority = false,
   isScrollable = false,
-
+  imageSkeleton,
   onImageChange,
 }: RestaurantImageGalleryProps) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -52,14 +53,14 @@ const RestaurantImageGallery = ({
               imageClassName
             )}
           >
+            {/* 로딩 스켈레톤 */}
+            <div className={cn('absolute inset-0 animate-pulse', imageSkeleton)} />
             <Image
               src={imageUrl}
               fill
               sizes="100px"
               alt={`사진 ${index + 1}`}
-              priority={imagePriority}
-              blurDataURL={'/images/backgroundImage.png'}
-              placeholder="blur"
+              loading={imagePriority ? undefined : 'lazy'}
             />
           </button>
         ))}

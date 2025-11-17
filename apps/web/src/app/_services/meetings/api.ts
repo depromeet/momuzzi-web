@@ -1,4 +1,5 @@
 import { api } from '@/app/_lib/api';
+import { MeetingOverview } from '@/app/_services/overview';
 import { CreateMeetingRequest, CreateMeetingResponse } from '@/app/meetings/create/_models/types';
 
 import { formatCreateMeetingResponse, formatMeetingResponse } from './format';
@@ -10,6 +11,8 @@ export const meetingsApi = {
     const response = await api.get<MeetingResponse[]>('/meetings');
     return response.map(formatMeetingResponse);
   },
+  getMeetingHistory: (meetingId: number) =>
+    api.get<MeetingOverview>(`/meetings/${meetingId}/history`),
   createMeeting: async (form: CreateMeetingRequest) => {
     const response = await api.post<CreateMeetingResponse, CreateMeetingRequest>('/meetings', form);
     return formatCreateMeetingResponse(response);

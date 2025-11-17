@@ -24,7 +24,7 @@ const AnalysisPage = async ({ params }: AnalysisPageProps) => {
 
   await Promise.all([
     queryClient.prefetchQuery({
-      ...getPlacesQueryOptions('강남역 한식 맛집'),
+      ...getPlacesQueryOptions(Number(eventId)),
     }),
     queryClient.prefetchQuery({
       ...getOverviewQueryOptions(Number(eventId)),
@@ -79,7 +79,7 @@ const AnalysisPage = async ({ params }: AnalysisPageProps) => {
         </div>
       </div>
 
-      <MorePicksButton />
+      <MorePicksButton showHomeButton />
     </div>
   );
 };

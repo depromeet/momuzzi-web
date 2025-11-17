@@ -54,6 +54,7 @@ const SurveyLayout = ({
         onLeftClick={onBack}
         onRightClick={onRightClick}
         rightLabel={rightLabel}
+        className="pb-0"
       />
       <div className="flex items-center justify-center px-4 py-1.5">
         <StepIndicator value={stepValue} total={totalSteps} />

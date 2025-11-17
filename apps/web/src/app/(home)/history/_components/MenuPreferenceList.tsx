@@ -2,24 +2,15 @@
 
 import { useMemo } from 'react';
 
-import { useQuery } from '@tanstack/react-query';
-import { useParams } from 'next/navigation';
-
 import { cn } from '@/app/_lib/cn';
-import { getOverviewQueryOptions } from '@/app/_queries/overviewQueries';
+import { MeetingOverview } from '@/app/_services/overview';
 import { PIE_GRADIENTS } from '@/app/events/[eventId]/analysis/_components/PieChart/chart';
 import { buildPreferenceSummary } from '@/app/events/[eventId]/analysis/_utils';
 
-const MenuPreferenceList = () => {
-  const params = useParams();
-  const { eventId } = params;
-  const { data: overview } = useQuery({
-    ...getOverviewQueryOptions(Number(eventId)),
-  });
-
+const MenuPreferenceList = ({ history }: { history: MeetingOverview }) => {
   const { leafCountsArr, currentUser } = buildPreferenceSummary(
-    overview?.participantList || [],
-    overview?.currentUserId
+    history?.participantList || [],
+    history?.currentUserId
   );
 
   const myLeafIdsByMain = useMemo(() => {

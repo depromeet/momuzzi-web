@@ -37,11 +37,7 @@ const EndedMeetingCard = ({ meeting, onClick }: EndedMeetingCardProps) => {
         </div>
       </div>
 
-      {participantList.length > 0 ? (
-        <AvatarList surveyParticipantList={participantList} />
-      ) : (
-        <p className="label-2 font-medium text-neutral-500">설문 참여자 없음</p>
-      )}
+      <AvatarList surveyParticipantList={participantList} />
     </div>
   );
 };

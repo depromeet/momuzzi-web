@@ -30,9 +30,11 @@ export const shareKakaoLink = (shareUrl?: string) => {
   window.Kakao.Link.sendDefault({
     objectType: 'feed',
     content: {
-      title: '🎉 모임에 초대합니다!',
-      description: '그냥 맛집? 나만의 맛집!',
-      imageUrl: '/images/example-kakao-bg.png',
+      title: '식당 추천을 위한 설문이 시작됐어요!',
+      description: '모무찌에서 먹고 싶은 메뉴를 어필해보세요.',
+      imageUrl: `${window.location.origin}/images/momuzzi-kakao.png`,
+      imageWidth: 1200,
+      imageHeight: 604,
       link: {
         mobileWebUrl: url,
         webUrl: url,
@@ -40,7 +42,7 @@ export const shareKakaoLink = (shareUrl?: string) => {
     },
     buttons: [
       {
-        title: '모임 참여하러 가기',
+        title: '설문 하러 가기',
         link: {
           mobileWebUrl: url,
           webUrl: url,
@@ -62,6 +64,8 @@ declare global {
             title: string;
             description: string;
             imageUrl: string;
+            imageWidth?: number;
+            imageHeight?: number;
             link: {
               mobileWebUrl: string;
               webUrl: string;

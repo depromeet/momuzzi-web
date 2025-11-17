@@ -9,14 +9,14 @@ const buttonVariants = cva(
   {
     variants: {
       theme: {
-        'cta-gradient': 'cta-gradient text-white',
-        orange: 'bg-orange-500 text-white',
+        'cta-gradient': 'cta-gradient text-white select-none',
+        orange: 'bg-orange-500 text-white select-none',
         'orange-light': 'bg-orange-100 text-orange-600 ',
-        gray: 'text-neutral-1400 bg-neutral-300',
+        gray: 'text-neutral-1400 bg-neutral-300 select-none',
       },
       status: {
         normal: '',
-        disabled: 'opacity-30 cursor-not-allowed pointer-events-none',
+        disabled: 'bg-orange-200 cursor-not-allowed pointer-events-none',
       },
     },
     defaultVariants: {
@@ -71,7 +71,7 @@ const Button = ({ className, theme, status, children, ...props }: ButtonProps) =
   const isDisabled = status === 'disabled';
   return (
     <button
-      className={cn(buttonVariants({ theme, status }), className)}
+      className={cn(buttonVariants({ theme: isDisabled ? 'orange' : theme, status }), className)}
       disabled={isDisabled}
       {...props}
     >

@@ -34,6 +34,7 @@ const OverviewClient = () => {
   } = useQuery<MeetingOverview, ApiError>({
     ...getOverviewQueryOptions(Number(eventId)),
     retry: false,
+    refetchInterval: 4000,
   });
 
   useEffect(() => {
@@ -51,7 +52,7 @@ const OverviewClient = () => {
   return (
     <>
       <div className="flex flex-1 flex-col">
-        <div className="flex w-full flex-col items-center gap-6 px-5 py-4">
+        <div className="flex w-full flex-col items-center gap-3 px-5">
           <SurveyStatusBanner overview={overview} />
           <div className="flex w-full px-4">
             <ParticipantProgressIndicator

@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef } from 'react';
 
 import { useQuery } from '@tanstack/react-query';
+import { useParams } from 'next/navigation';
 
 import { ApiError } from '@/app/_models/api';
 import { getPlacesQueryOptions } from '@/app/_queries/placeQueries';
@@ -16,13 +17,16 @@ import RestaurantsSwiper from '@/app/events/[eventId]/restaurants/_components/Re
 const NAVIGATION_HEIGHT = '3.5rem';
 
 const RestaurantsClient = () => {
+  const params = useParams();
+  const { eventId: meetingId } = params;
+
   const { pickCount } = useRestaurantPickCount();
 
   const prevPicksRef = useRef(pickCount);
   const cardRefs = useRef<{ [key: number]: HTMLDivElement | null }>({});
 
   const { data: restaurants } = useQuery<RecommendedPlaceResponse, ApiError>({
-    ...getPlacesQueryOptions('강남역 한식 맛집'),
+    ...getPlacesQueryOptions(Number(meetingId)),
   });
 
   useEffect(() => {

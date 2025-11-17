@@ -34,7 +34,7 @@ const ParticipantProgressIndicator = ({
               className="absolute -top-11 -translate-x-1/2 transition-all"
               style={{ left: `${clampedPercent}%` }}
             >
-              <div className="flex h-7 w-18 items-center justify-center gap-1 rounded-full bg-orange-100 px-2 py-0.5">
+              <div className="flex h-7 items-center justify-center gap-1 rounded-full bg-orange-100 px-2 py-0.5">
                 <PeopleFillIcon
                   className={cn(
                     'text-orange-500',
@@ -43,14 +43,14 @@ const ParticipantProgressIndicator = ({
                 />
                 <span
                   className={cn(
-                    'font-bold text-orange-600',
+                    'font-semibold text-orange-600',
                     isSurveyClosed && !isEveryoneCompleted && 'text-neutral-700'
                   )}
                 >
                   {surveyCompletedParticipants}
                 </span>
-                <span className="text-neutral-700">/</span>
-                <span className="text-neutral-700">{totalParticipants}</span>
+                <span className="font-semibold text-neutral-700">/</span>
+                <span className="font-semibold text-neutral-700">{totalParticipants}</span>
               </div>
 
               <div

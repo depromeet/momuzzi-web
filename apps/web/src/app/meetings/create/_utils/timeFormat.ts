@@ -62,3 +62,21 @@ export const getDefaultDateTime = () => {
 
   return { defaultDate, defaultTime };
 };
+
+/**
+ * 날짜와 시간이 현재 시간으로부터 2시간 이후인지 확인
+ * @param date - "YYYY-MM-DD" 형식의 날짜 문자열
+ * @param time - "HH" 형식의 24시간 시간 문자열
+ * @returns 현재 시간 이후이면 true, 그 외에는 false
+ */
+export const isValidDateTime = (date: string | null, time: string | null): boolean => {
+  if (!date || !time) return false;
+
+  const now = new Date();
+  const selectedDateTime = new Date(`${date}T${time}:00:00`);
+
+  // 현재 시간 + 2시간
+  const minDateTime = new Date(now.getTime() + 2 * 60 * 60 * 1000);
+
+  return selectedDateTime >= minDateTime;
+};

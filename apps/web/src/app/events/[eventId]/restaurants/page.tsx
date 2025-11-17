@@ -9,11 +9,11 @@ interface RestaurantsPageProps {
 }
 
 const RestaurantsPage = async ({ params }: RestaurantsPageProps) => {
-  const { eventId: _eventId } = await params;
+  const { eventId: meetingId } = await params;
 
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
-    ...getPlacesQueryOptions('강남역 한식 맛집'),
+    ...getPlacesQueryOptions(Number(meetingId)),
   });
 
   const dehydratedState = dehydrate(queryClient);

@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
@@ -16,13 +16,28 @@ interface RestaurantCardProps {
   isActive: boolean;
 }
 
-const RestaurantCard = ({ place, index, isActive }: RestaurantCardProps) => {
-  const [image, setImage] = useState(place.photos?.[0]);
-  const [imageIndex, setImageIndex] = useState(0);
+/**
+ * 유효한 이미지 URL을 반환하는 헬퍼 함수
+ */
+const getValidImageUrl = (url: string | undefined | null): string => {
+  if (url && url.trim() !== '') return url;
+  return DEFAULT_IMAGE;
+};
 
-  const handleImageChange = (index: number) => {
-    setImage(place.photos?.[index] || DEFAULT_IMAGE);
-    setImageIndex(index);
+const RestaurantCard = ({ place, index, isActive }: RestaurantCardProps) => {
+  const images = useMemo(() => place.photos || [], [place.photos]);
+
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
+  const currentImageUrl = useMemo(() => {
+    const imageUrl = images[selectedImageIndex];
+    return getValidImageUrl(imageUrl);
+  }, [images, selectedImageIndex]);
+
+  const handleImageChange = (newIndex: number) => {
+    if (newIndex >= 0 && newIndex < images.length) {
+      setSelectedImageIndex(newIndex);
+    }
   };
 
   return (
@@ -35,27 +50,32 @@ const RestaurantCard = ({ place, index, isActive }: RestaurantCardProps) => {
       }}
     >
       <section className="relative flex h-full w-full overflow-hidden rounded-4xl">
+        {/* 로딩 스켈레톤 - 현재 이미지가 로드되지 않았을 때만 표시 */}
+        <div className="absolute inset-0 bg-neutral-1400" />
+
+        {/* 이미지 전환 애니메이션 */}
         <AnimatePresence mode="wait">
           <motion.div
-            key={image || place.photos?.[0]} // 이미지 URL을 key로
-            initial={{ opacity: imageIndex === 0 ? 1 : 0 }}
+            key={currentImageUrl}
+            initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2, ease: 'easeInOut' }}
             className="absolute inset-0"
           >
             <Image
-              src={image || place.photos?.[0]} //하이라이트 처리를 위해 첫 번째 이미지를 사용
+              src={currentImageUrl}
               alt={place.name}
               fill
               className="z-10 object-cover"
-              priority={index === 0 || index === 1}
-              sizes="700px"
+              priority={index === 0}
+              loading={index === 0 ? undefined : 'lazy'}
+              sizes="(max-width: 768px) 85vw, 700px"
             />
           </motion.div>
         </AnimatePresence>
 
-        {index === 0 && <PickRankBadge className="absolute top-6 left-0 z-20" rank={index + 1} />}
+        {index < 3 && <PickRankBadge className="absolute top-6 left-0 z-20" rank={index + 1} />}
         <div
           className="z-20 mt-auto w-full px-4 pt-9 pb-5"
           style={{
@@ -69,22 +89,18 @@ const RestaurantCard = ({ place, index, isActive }: RestaurantCardProps) => {
               opacity: isActive ? 1 : 0,
               y: isActive ? 0 : 20,
             }}
-            initial={
-              index === 0
-                ? { opacity: 1, y: 0 } // 첫 카드는 초기에 바로 보임
-                : { opacity: 0, y: 20 }
-            }
+            initial={index === 0 ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{
               duration: 0.5,
               ease: [0.32, 0.72, 0, 1],
             }}
             style={{
-              pointerEvents: isActive ? 'auto' : 'none', // 비활성 시 클릭 방지
+              pointerEvents: isActive ? 'auto' : 'none',
             }}
           >
             <RestaurantCardContent
               place={place}
-              imageIndex={imageIndex}
+              imageIndex={selectedImageIndex}
               handleImageChange={handleImageChange}
               theme="heroDark"
               imagePriority={index < 2}

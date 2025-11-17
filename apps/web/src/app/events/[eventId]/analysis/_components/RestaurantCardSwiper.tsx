@@ -16,10 +16,10 @@ import RestaurantCard from '@/app/events/[eventId]/analysis/_components/Restaura
 
 const RestaurantCardSwiper = () => {
   const params = useParams();
-  const { eventId } = params;
+  const { eventId: meetingId } = params;
 
   const { data: placesData } = useQuery<RecommendedPlaceResponse, ApiError>({
-    ...getPlacesQueryOptions('강남역 한식 맛집'),
+    ...getPlacesQueryOptions(Number(meetingId)),
   });
 
   const places = placesData?.items || [];
@@ -74,7 +74,7 @@ const RestaurantCardSwiper = () => {
           <span className="text-neutral-600">{totalPicks}</span>
         </div>
         <Link
-          href={getUrlWithPicks(`/events/${eventId}/restaurants`)}
+          href={getUrlWithPicks(`/events/${meetingId}/restaurants`)}
           replace={true}
           prefetch={true}
           className="flex h-8 items-center gap-1 rounded-full border border-white-alpha-3 bg-white-alpha-2 pr-3 pl-2"
@@ -92,7 +92,7 @@ const RestaurantCardSwiper = () => {
               className={cn(
                 'min ml-1.5 h-[131.7vw] max-h-[623px] flex-[0_0_85%] [transform:translate3d(0,0,0)] overflow-hidden rounded-2xl',
                 index === 0 && 'ml-5',
-                index === places.length - 1 && 'mr-5'
+                index === pickCount - 1 && 'mr-5'
               )}
             >
               <RestaurantCard place={place} index={index} isActive={selectedIndex === index} />

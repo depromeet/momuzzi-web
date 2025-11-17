@@ -1,10 +1,11 @@
 'use client';
 
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useTransition } from 'react';
 
 import { useParams, useRouter } from 'next/navigation';
 
 import Button from '@/app/_components/ui/Button';
+import Loading from '@/app/_components/ui/Loading';
 import { useCountdownDisplay } from '@/app/_hooks/useCountdownDisplay';
 import { MeetingOverview } from '@/app/_services/overview';
 import useOverviewState from '@/app/events/[eventId]/overview/_hooks/useOverviewState';
@@ -12,17 +13,22 @@ import useOverviewState from '@/app/events/[eventId]/overview/_hooks/useOverview
 const SurveyActionButton = ({ overview }: { overview: MeetingOverview }) => {
   const router = useRouter();
   const { eventId } = useParams();
+  const [isPending, startTransition] = useTransition();
 
   const { hasParticipated } = useOverviewState(overview);
-  const isSurveyClosed = overview.meetingInfo.isClosed;
-  const isEveryoneCompleted =
-    overview.participantList.length === overview.meetingInfo.totalParticipantCnt;
-  const countdown = useCountdownDisplay(new Date(overview.meetingInfo.endAt));
+  const { isClosed: isSurveyClosed, totalParticipantCnt, endAt } = overview.meetingInfo;
+  const isEveryoneCompleted = overview.participantList.length === totalParticipantCnt;
+  const countdown = useCountdownDisplay(new Date(endAt));
 
   const buttonState = useMemo(() => {
-    if (!hasParticipated) return { label: '설문 참여하기', path: `/meetings/${eventId}/survey` };
-    if (isSurveyClosed || isEveryoneCompleted)
+    if (!hasParticipated) {
+      return { label: '설문 참여하기', path: `/meetings/${eventId}/survey` };
+    }
+
+    if (isSurveyClosed || isEveryoneCompleted) {
       return { label: '추천 결과 보기', path: `/events/${eventId}/analysis` };
+    }
+
     return {
       label: (
         <>
@@ -31,24 +37,36 @@ const SurveyActionButton = ({ overview }: { overview: MeetingOverview }) => {
       ),
       path: null,
     };
-  }, [hasParticipated, isSurveyClosed, countdown, eventId, isEveryoneCompleted]);
+  }, [hasParticipated, isSurveyClosed, isEveryoneCompleted, countdown, eventId]);
 
   const handleClick = () => {
-    if (buttonState.path) router.push(buttonState.path);
+    if (!buttonState.path) return;
+
+    if (buttonState.path === `/events/${eventId}/analysis`) {
+      startTransition(() => {
+        router.push(`/events/${eventId}/analysis`);
+      });
+    } else {
+      router.push(buttonState.path);
+    }
   };
 
   useEffect(() => {
-    if (isSurveyClosed) {
+    if (isSurveyClosed || isEveryoneCompleted) {
       router.prefetch(`/events/${eventId}/analysis`);
     }
-  }, [isSurveyClosed, eventId, router]); // 설문 마감 후 추천 결과 페이지 미리 로드
+  }, [isSurveyClosed, isEveryoneCompleted, eventId, router]);
 
   return (
-    <div className="sticky bottom-0 px-5 pt-3 pb-6">
-      <Button onClick={handleClick}>
-        <span className="body-3 font-semibold text-white">{buttonState.label}</span>
-      </Button>
-    </div>
+    <>
+      {isPending && <Loading />}
+
+      <div className="sticky bottom-0 px-5 py-3">
+        <Button onClick={handleClick} disabled={isPending}>
+          <span className="body-3 font-semibold text-white">{buttonState.label}</span>
+        </Button>
+      </div>
+    </>
   );
 };
 

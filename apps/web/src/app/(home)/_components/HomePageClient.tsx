@@ -55,13 +55,9 @@ const HomePageClient = ({ meetings }: HomePageClientProps) => {
         <div className="flex flex-col gap-3 px-5 pb-20">
           {endedMeetings.length > 0 ? (
             endedMeetings.map((meeting) => (
-              <EndedMeetingCard
-                key={meeting.id}
-                meeting={meeting}
-                onClick={() => {
-                  // TODO: 모임결과 페이지로 이동
-                }}
-              />
+              <Link key={meeting.id} href={`/history/${meeting.id}`}>
+                <EndedMeetingCard meeting={meeting} />
+              </Link>
             ))
           ) : (
             <p className="mx-auto px-5 py-[1.25rem] body-3 leading-6 font-medium text-neutral-800">

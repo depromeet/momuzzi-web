@@ -47,6 +47,8 @@ const CreatePageClient = () => {
     }
   };
 
+  const isDisabled = !meetingForm.isFormValid || isLoading;
+
   return (
     <>
       <FormSection label="모임 이름">
@@ -96,13 +98,9 @@ const CreatePageClient = () => {
         </div>
       </FormSection>
 
-      <footer className="pt-3">
-        <Button
-          onClick={handleSubmit}
-          disabled={!meetingForm.isFormValid || isLoading}
-          status={meetingForm.isFormValid && !isLoading ? 'normal' : 'disabled'}
-        >
-          {isLoading ? '생성 중...' : '모임 생성하기'}
+      <footer className="sticky bottom-0 pb-6">
+        <Button onClick={handleSubmit} status={isDisabled ? 'disabled' : 'normal'}>
+          {isLoading ? '모임 생성 중...' : '모임 생성하기'}
         </Button>
       </footer>
 

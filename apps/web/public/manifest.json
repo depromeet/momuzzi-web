@@ -1,0 +1,29 @@
+{
+  "name": "모두의 취향을 모아 식당 추천 - 모무찌",
+  "short_name": "모무찌",
+  "description": "오늘의 메뉴 고민, 모무찌가 대신 해드릴게요!",
+  "start_url": "/",
+  "categories": ["food", "restaurant", "survey", "social"],
+  "display": "standalone",
+  "theme_color": "#e03900",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "16x16",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/favicon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

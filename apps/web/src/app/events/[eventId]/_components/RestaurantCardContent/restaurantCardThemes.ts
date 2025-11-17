@@ -17,6 +17,7 @@ type UI = {
   wishButton: string;
   wishCount: string;
   buttonContainer: string;
+  imageSkeleton: string;
 };
 
 export const CARD_UI = {
@@ -35,6 +36,7 @@ export const CARD_UI = {
     wishButton: 'bg-neutral-1600',
     wishCount: 'text-neutral-700',
     buttonContainer: 'mt-4',
+    imageSkeleton: 'bg-neutral-200',
   },
   heroDark: {
     root: 'gap-2', // 더 넓은 갭
@@ -51,5 +53,6 @@ export const CARD_UI = {
     wishButton: 'border border-white-alpha-2 bg-black-alpha-4',
     wishCount: 'text-white',
     buttonContainer: '',
+    imageSkeleton: 'bg-neutral-1400',
   },
 } as const satisfies Record<RestaurantCardTheme, UI>;

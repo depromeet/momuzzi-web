@@ -37,7 +37,7 @@ const PersonaCardSwiper = ({ overview }: { overview: MeetingOverview }) => {
   return (
     <div className="flex flex-col">
       <div className="overflow-x-hidden" ref={emblaRef}>
-        <div className="flex w-full gap-4 pt-9 pb-6">
+        <div className="flex w-full gap-4 pt-2 pb-3">
           {overview.participantList.map((participant, index) => (
             <div
               key={participant.userId}

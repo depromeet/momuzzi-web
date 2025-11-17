@@ -1,4 +1,4 @@
-import { CUISINE_MAP, CuisineId } from '@/app/_constants/cuisine';
+import { CUISINE_MAP } from '@/app/_constants/cuisine';
 import { MeetingParticipant, MenuItem } from '@/app/_services/overview';
 import {
   CurrentUserSelection,
@@ -111,12 +111,14 @@ export function buildPreferenceSummary(
   // UI에 바로 뿌리기 좋게 정렬된 배열들도 같이 리턴 (count desc)
   const mainCountsArr = Object.values(mainCounts).sort((a, b) => b.count - a.count);
 
-  const leafCountsArr = Object.values(leafCounts).map((m) => ({
-    mainId: m.mainId,
-    mainName: m.mainName,
-    total: m.total,
-    leaves: Object.values(m.leaves).sort((a, b) => b.count - a.count),
-  }));
+  const leafCountsArr = Object.values(leafCounts)
+    .sort((a, b) => b.total - a.total)
+    .map((m) => ({
+      mainId: m.mainId,
+      mainName: m.mainName,
+      total: m.total,
+      leaves: Object.values(m.leaves).sort((a, b) => b.count - a.count),
+    }));
 
   return { mainCounts, mainCountsArr, leafCounts, leafCountsArr, currentUser };
 }

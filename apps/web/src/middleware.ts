@@ -40,9 +40,11 @@ const middleware = async (req: NextRequest) => {
         return response;
       }
 
-      const redirectTo = `${pathname}${req.nextUrl.search}`;
       const loginUrl = new URL('/login', req.url);
-      loginUrl.searchParams.set('redirectTo', redirectTo);
+      if (pathname !== '/') {
+        const redirectTo = `${pathname}${req.nextUrl.search}`;
+        loginUrl.searchParams.set('redirectTo', redirectTo);
+      }
       const response = NextResponse.redirect(loginUrl);
       response.cookies.delete('accessToken');
       response.cookies.delete('refreshToken');

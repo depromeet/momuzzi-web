@@ -1,6 +1,6 @@
-'use client';
+﻿'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import Input from '@/app/_components/ui/Input';
 import Loading from '@/app/_components/ui/Loading';
@@ -10,7 +10,7 @@ import ProfileSelector from '@/app/survey/_components/ui/selector/ProfileSelecto
 import { useProfileValidation } from '@/app/survey/_hooks/useProfileValidation';
 
 interface SurveyProfileStepProps {
-  onNext: (payload: { name: string; profileKey: string }) => void;
+  onNext: (payload: { name: string; profileKey: string }) => Promise<void> | void;
   onCancel: () => void;
   initialValue?: string;
   initialProfileKey?: string;
@@ -20,9 +20,9 @@ interface SurveyProfileStepProps {
 }
 
 /** SurveyProfileStep
- * - 이름 / 프로필 색상 선택 단계
- * - 닉네임 및 프로필 중복 검증
- * - 검증 통과 시 프로필 저장 후 다음 단계 이동
+ * - 닉네임/프로필 색상 입력
+ * - 기본 텍스트 규칙만 검증 (중복 허용)
+ * - 저장 후 다음 단계(or 완료)로 이동
  */
 const SurveyProfileStep = ({
   onNext,
@@ -31,53 +31,29 @@ const SurveyProfileStep = ({
   initialProfileKey = 'default',
   title = '사용하실 프로필과\n이름을 알려주세요',
   description = '다음 단계로 넘어가면 수정할 수 없어요.',
-  meetingId, // TODO: 실제 모임 ID 전달받기
+  meetingId,
 }: SurveyProfileStepProps) => {
   const [name, setName] = useState(initialValue);
   const [profileKey, setProfileKey] = useState(initialProfileKey);
-  const [usedNicknames, setUsedNicknames] = useState<string[]>([]);
-  const [lockedProfileKeys, setLockedProfileKeys] = useState<string[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const { error, setError, validateNickname, validateColor, handleApiError } = useProfileValidation(
-    {
-      usedNicknames,
-      lockedProfileKeys,
-    }
-  );
+  const { error, setError, validateNickname, handleApiError } = useProfileValidation();
 
-  /** 모임 참가자 데이터 로드 (닉네임/색상 중복검사용) */
-  useEffect(() => {
-    if (!meetingId) return;
-    (async () => {
-      try {
-        const res = await surveyApi.getMeetingDetail(meetingId);
-        const others = res.participantList.filter((p) => p.userId !== res.currentUserId);
-        setUsedNicknames(others.map((p) => p.nickname));
-        setLockedProfileKeys(others.map((p) => p.profileColor.toLowerCase()));
-      } catch (err) {
-        console.error('모임 상세 조회(getMeetingDetail) 실패:', err);
-      }
-    })();
-  }, [meetingId]);
-
-  /** 프로필 저장 + 다음 단계 이동 */
   const handleNext = async () => {
     const nicknameError = validateNickname(name);
     if (nicknameError) return setError(nicknameError);
 
-    const colorError = validateColor(profileKey);
-    if (colorError) return setError(colorError);
-
     try {
       setIsSubmitting(true);
+      const normalizedColor =
+        profileKey === 'sweetPotato' ? 'SWEET_POTATO' : profileKey.toUpperCase();
       await surveyApi.putAttendeeProfile(meetingId, {
         attendeeNickname: name.trim(),
-        color: profileKey.toUpperCase(),
+        color: normalizedColor,
       });
-      onNext({ name, profileKey });
+      await onNext({ name, profileKey });
     } catch (e) {
-      handleApiError(e);
+      handleApiError();
     } finally {
       setIsSubmitting(false);
     }
@@ -93,16 +69,13 @@ const SurveyProfileStep = ({
         isNextDisabled={!name.trim() || !!error || isSubmitting}
         nextButtonText="다음 단계로"
       >
-        <ProfileSelector
-          value={profileKey}
-          onChange={setProfileKey}
-          lockedKeys={lockedProfileKeys}
-        />
+        <ProfileSelector value={profileKey} onChange={setProfileKey} />
         <Input
           value={name}
-          onChange={(e) => {
-            setName(e.target.value);
-            setError(validateNickname(e.target.value));
+          onChange={(event) => {
+            const { value } = event.target;
+            setName(value);
+            setError(validateNickname(value));
           }}
           onClear={() => setName('')}
           hasError={!!error}

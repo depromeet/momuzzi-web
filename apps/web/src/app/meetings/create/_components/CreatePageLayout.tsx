@@ -29,7 +29,7 @@ const CreatePageLayout = ({ children }: CreatePageLayoutProps) => {
         <Heading as="h1">{`모임 이름과 내용을\n작성해 주세요`}</Heading>
       </header>
 
-      <main className="no-scrollbar flex flex-1 flex-col gap-8 px-5 pb-6">{children}</main>
+      <main className="no-scrollbar flex flex-1 flex-col gap-8 px-5">{children}</main>
 
       <ConfirmModal
         isOpen={showModal}
