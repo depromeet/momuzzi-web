@@ -2,7 +2,6 @@ import { RefObject, useCallback } from 'react';
 
 import * as Linking from 'expo-linking';
 import { WebView } from 'react-native-webview';
-
 interface UseWebViewHandlersProps {
   webViewRef: RefObject<WebView | null>;
   webAppUrl: string;
@@ -21,7 +20,7 @@ export const useWebViewHandlers = ({ webViewRef, webAppUrl }: UseWebViewHandlers
    * 웹앱 URL, 카카오 로그인 관련 URL은 WebView에서 처리하고, 그 외 외부 링크는 기본 브라우저에서 처리합니다.
    */
   const handleShouldStartLoadWithRequest = useCallback(
-    (request: any) => {
+    (request: { url: string }): boolean => {
       const { url } = request;
 
       // 웹앱 URL, 카카오 로그인
@@ -54,11 +53,10 @@ export const useWebViewHandlers = ({ webViewRef, webAppUrl }: UseWebViewHandlers
 
         const errorUrl = `${webAppUrl}/error`;
 
-        webViewRef.current.reload?.();
-        webViewRef.current.injectJavaScript?.(`
-        window.location.href = "${errorUrl}";
-        true;
-      `);
+        webViewRef.current.injectJavaScript(`
+          window.location.href = "${errorUrl}";
+          true;
+        `);
       }
     },
     [webViewRef, webAppUrl]
