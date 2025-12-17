@@ -7,12 +7,36 @@
 
 export const injectedJavaScript = `
     (function() {
+      // ReactNativeWebView 존재 확인
+      if (!window.ReactNativeWebView) {
+        console.warn('ReactNativeWebView is not available');
+        return;
+      }
+
+      let lastColor = '';
+      let colorCheckTimeout = null;
+
       function sendBackgroundColor() {
-        const bgColor = window.getComputedStyle(document.body).backgroundColor;
-        window.ReactNativeWebView.postMessage(JSON.stringify({
-          type: 'backgroundColor',
-          color: bgColor
-        }));
+        try {
+          const bgColor = window.getComputedStyle(document.body).backgroundColor;
+          // 색상이 실제로 변경되었을 때만 메시지 전송 (불필요한 업데이트 방지)
+          if (bgColor !== lastColor) {
+            lastColor = bgColor;
+            window.ReactNativeWebView.postMessage(JSON.stringify({
+              type: 'backgroundColor',
+              color: bgColor
+            }));
+          }
+        } catch (error) {
+          console.error('Error sending background color:', error);
+        }
+      }
+
+      function debouncedSendBackgroundColor() {
+        if (colorCheckTimeout) {
+          clearTimeout(colorCheckTimeout);
+        }
+        colorCheckTimeout = setTimeout(sendBackgroundColor, 100);
       }
 
       // 초기 로드 시 배경색 전송
@@ -27,14 +51,14 @@ export const injectedJavaScript = `
       const observer = new MutationObserver(() => {
         if (location.href !== lastUrl) {
           lastUrl = location.href;
-          setTimeout(sendBackgroundColor, 100);
+          debouncedSendBackgroundColor();
         }
       });
       observer.observe(document.body, { childList: true, subtree: true });
 
       // 스타일 변경 감지
       const styleObserver = new MutationObserver(() => {
-        sendBackgroundColor();
+        debouncedSendBackgroundColor();
       });
       styleObserver.observe(document.documentElement, {
         attributes: true,
