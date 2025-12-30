@@ -15,11 +15,11 @@ type WebViewMessage = {
 
 const WEB_APP_URL = process.env.EXPO_PUBLIC_WEB_URL;
 
-const App = () => {
-  if (!WEB_APP_URL) {
-    throw new Error('EXPO_PUBLIC_WEB_URL 환경 변수가 설정되지 않았습니다.');
-  }
+if (!WEB_APP_URL) {
+  throw new Error('EXPO_PUBLIC_WEB_URL 환경 변수가 설정되지 않았습니다.');
+}
 
+const App = () => {
   const webViewRef = useRef<WebView>(null);
   const [backgroundColor, setBackgroundColor] = useState('transparent');
 
