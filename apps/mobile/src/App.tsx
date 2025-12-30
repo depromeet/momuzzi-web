@@ -3,10 +3,15 @@ import { useRef, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { WebView } from 'react-native-webview';
+import { WebView, WebViewMessageEvent } from 'react-native-webview';
 
 import { useWebViewHandlers } from './hooks/useWebViewHandlers';
 import { injectedJavaScript } from './lib/injectedJavaScript';
+
+type WebViewMessage = {
+  type: 'backgroundColor';
+  color: string;
+};
 
 const WEB_APP_URL = process.env.EXPO_PUBLIC_WEB_URL;
 
@@ -23,10 +28,11 @@ const App = () => {
     webAppUrl: WEB_APP_URL,
   });
 
-  const handleMessage = (event: any) => {
+  const handleMessage = (event: WebViewMessageEvent) => {
     try {
-      const data = JSON.parse(event.nativeEvent.data);
-      if (data.type === 'backgroundColor' && data.color) {
+      const data = JSON.parse(event.nativeEvent.data) as WebViewMessage;
+
+      if (data.type === 'backgroundColor') {
         setBackgroundColor(data.color);
       }
     } catch (error) {
