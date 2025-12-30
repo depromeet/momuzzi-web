@@ -7,6 +7,7 @@ interface UseWebViewHandlersProps {
   webAppUrl: string;
 }
 
+const AUTH_PROVIDER_HOSTS = ['kauth.kakao.com', 'accounts.kakao.com'];
 /**
  * @description WebView 관련 핸들러들을 제공하는 커스텀 훅으로,
  * WebView의 페이지 로드 요청 처리 및 에러 발생 시 동작을 정의합니다.
@@ -23,16 +24,20 @@ export const useWebViewHandlers = ({ webViewRef, webAppUrl }: UseWebViewHandlers
     (request: { url: string }): boolean => {
       const { url } = request;
 
-      // 웹앱 URL, 카카오 로그인
-      if (
-        url.startsWith(webAppUrl) ||
-        url.includes('kauth.kakao.com') ||
-        url.includes('accounts.kakao.com')
-      ) {
-        return true;
+      try {
+        const urlObj = new URL(request.url);
+        const webAppHost = new URL(webAppUrl).hostname;
+        const allowedHosts = [webAppHost, ...AUTH_PROVIDER_HOSTS];
+
+        if (allowedHosts.includes(urlObj.hostname)) {
+          return true;
+        }
+      } catch {
+        // URL 파싱 실패 시 경고 로그 출력
+        console.warn('Invalid URL:', url);
       }
 
-      // 그 외 외부 링크
+      // 외부 링크는 기본 브라우저에서 열기
       Linking.openURL(url);
       return false;
     },
