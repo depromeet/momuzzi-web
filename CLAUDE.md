@@ -29,7 +29,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - **패키지 매니저**: pnpm 사용 필수 (버전: 10.15.0+)
 - **Git Hook**: Lefthook으로 커밋 시 자동으로 lint/format/typecheck 실행
-- **경로 별칭**: 웹 앱(`apps/web`) 내부에서 `@/*`는 `./src/*`로 매핑됩니다.
+- **경로 별칭**:
+  - 웹 앱(`apps/web`): `@/*` → `./src/*`
+  - 모바일 앱(`apps/mobile`): 상대 경로 사용 (경로 별칭 미설정)
 
 ## Git 워크플로우
 
