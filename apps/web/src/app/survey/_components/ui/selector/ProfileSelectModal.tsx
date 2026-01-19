@@ -6,10 +6,10 @@ import { X } from 'lucide-react';
 import Image from 'next/image';
 import { createPortal } from 'react-dom';
 
-import Button from '@/app/_components/ui/Button';
-import { cn } from '@/app/_lib/cn';
 import BottomSheet from '@/app/survey/_components/ui/modal/BottomSheet';
 import { AVATAR_OPTIONS } from '@/app/survey/_models/avatarOptions';
+import Button from '@/components/ui/Button';
+import { cn } from '@/lib/cn';
 
 interface ProfileSelectModalProps {
   open: boolean;

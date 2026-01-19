@@ -2,9 +2,9 @@ import { MantineProvider } from '@mantine/core';
 import Image from 'next/image';
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
 
-import ScaledStage from '@/app/_components/layout/ScaledStage';
-import { ToastProvider } from '@/app/_features/toast';
-import ReactQueryProvider from '@/app/_providers/ReactQueryProvider';
+import ScaledStage from '@/components/layout/ScaledStage';
+import { ToastProvider } from '@/features/toast';
+import ReactQueryProvider from '@/providers/ReactQueryProvider';
 
 import type { Viewport, Metadata } from 'next';
 

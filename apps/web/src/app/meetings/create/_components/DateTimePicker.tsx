@@ -5,11 +5,11 @@ import { useState, useCallback } from 'react';
 import { DatePicker } from '@mantine/dates';
 import { CalendarDays, Clock } from 'lucide-react';
 
-import BottomSheet from '@/app/_components/ui/BottomSheet';
-import Button from '@/app/_components/ui/Button';
-import { cn } from '@/app/_lib/cn';
 import TimePickerScroll from '@/app/meetings/create/_components/TimePickerScroll';
 import { formatTimeDisplay, isValidDateTime } from '@/app/meetings/create/_utils/timeFormat';
+import BottomSheet from '@/components/ui/BottomSheet';
+import Button from '@/components/ui/Button';
+import { cn } from '@/lib/cn';
 
 import 'dayjs/locale/ko';
 
@@ -33,8 +33,6 @@ const DateTimePicker = ({ date, time, onDateChange, onTimeChange }: DateTimePick
     onDateChange(tempDate);
     setShowCalendar(false);
   }, [tempDate, onDateChange]);
-
-  console.log('zxcvxcz', isValidDateTime(tempDate, time));
 
   return (
     <>

@@ -1,6 +1,6 @@
 'use client';
 
-import { cn } from '@/app/_lib/cn';
+import { cn } from '@/lib/cn';
 
 interface ConfirmModalProps {
   open: boolean;

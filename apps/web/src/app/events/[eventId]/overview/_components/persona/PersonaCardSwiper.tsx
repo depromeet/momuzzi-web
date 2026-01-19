@@ -3,11 +3,11 @@ import { useCallback, useEffect, useState } from 'react';
 
 import useEmblaCarousel from 'embla-carousel-react';
 
-import { cn } from '@/app/_lib/cn';
-import { MeetingOverview } from '@/app/_services/overview';
 import PersonaCard from '@/app/events/[eventId]/overview/_components/persona/PersonaCard';
 import PersonaEmptyCard from '@/app/events/[eventId]/overview/_components/persona/PersonaEmptyCard';
 import useOverviewState from '@/app/events/[eventId]/overview/_hooks/useOverviewState';
+import { cn } from '@/lib/cn';
+import { MeetingOverview } from '@/services/overview';
 
 const PersonaCardSwiper = ({ overview }: { overview: MeetingOverview }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel();

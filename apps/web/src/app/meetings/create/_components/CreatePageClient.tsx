@@ -5,12 +5,12 @@ import { useState } from 'react';
 import { MapPin } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
-import Button from '@/app/_components/ui/Button';
-import Input from '@/app/_components/ui/Input';
-import StepperInput from '@/app/_components/ui/StepperInput';
-import { useDisclosure } from '@/app/_hooks/useDisclosure';
-import { cn } from '@/app/_lib/cn';
-import { meetingsApi } from '@/app/_services/meetings';
+import Button from '@/components/ui/Button';
+import Input from '@/components/ui/Input';
+import StepperInput from '@/components/ui/StepperInput';
+import { useDisclosure } from '@/hooks/useDisclosure';
+import { cn } from '@/lib/cn';
+import { meetingsApi } from '@/services/meetings';
 
 import { useMeetingForm } from '../_hooks/useMeetingForm';
 

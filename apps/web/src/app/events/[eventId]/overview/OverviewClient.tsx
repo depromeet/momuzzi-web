@@ -5,16 +5,16 @@ import { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
 
-import CreateMeetingSuccessModal from '@/app/_components/ui/Modal/CreateMeetingSuccessModal';
-import ParticipantProgressIndicator from '@/app/_components/ui/ParticipantProgressIndicator';
-import { useDisclosure } from '@/app/_hooks/useDisclosure';
-import { ApiError } from '@/app/_models/api';
-import { getOverviewQueryOptions } from '@/app/_queries/overviewQueries';
-import { MeetingOverview } from '@/app/_services/overview';
 import PersonaCardSwiper from '@/app/events/[eventId]/overview/_components/persona/PersonaCardSwiper';
 import OverviewSkeleton from '@/app/events/[eventId]/overview/_components/Skeleton';
 import SurveyActionButton from '@/app/events/[eventId]/overview/_components/SurveyActionButton';
 import SurveyStatusBanner from '@/app/events/[eventId]/overview/_components/SurveyStatusBanner';
+import CreateMeetingSuccessModal from '@/components/ui/Modal/CreateMeetingSuccessModal';
+import ParticipantProgressIndicator from '@/components/ui/ParticipantProgressIndicator';
+import { ApiError } from '@/data/models/api';
+import { getOverviewQueryOptions } from '@/data/queries/overviewQueries';
+import { useDisclosure } from '@/hooks/useDisclosure';
+import { MeetingOverview } from '@/services/overview';
 
 const OverviewClient = () => {
   const router = useRouter();

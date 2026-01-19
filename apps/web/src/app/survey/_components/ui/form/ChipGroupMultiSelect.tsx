@@ -4,9 +4,9 @@ import { useCallback, useMemo } from 'react';
 
 import Image from 'next/image';
 
-import { useToast } from '@/app/_features/toast';
 import Chip from '@/app/survey/_components/ui/form/Chip';
 import { MAX_SELECT_COUNT } from '@/app/survey/_models/constants';
+import { useToast } from '@/features/toast';
 
 export interface ChipOption {
   id: string;

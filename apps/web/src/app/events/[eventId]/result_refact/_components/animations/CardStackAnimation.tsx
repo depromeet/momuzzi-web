@@ -5,8 +5,8 @@ import { useLayoutEffect } from 'react';
 import { motion, useAnimate } from 'framer-motion';
 import Image from 'next/image';
 
-import { cn } from '@/app/_lib/cn';
 import { Surveys } from '@/app/events/[eventId]/result_refact/_models/result';
+import { cn } from '@/lib/cn';
 
 const surveyKeyMap = {
   preferredCuisineList: '음식 종류',

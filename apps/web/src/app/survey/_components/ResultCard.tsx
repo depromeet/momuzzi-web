@@ -4,8 +4,8 @@ import { useEffect } from 'react';
 
 import Image from 'next/image';
 
-import { Heading, Text } from '@/app/_components/typography';
-import { useConfetti } from '@/app/_hooks/useConfetti';
+import { Heading, Text } from '@/components/typography';
+import { useConfetti } from '@/hooks/useConfetti';
 
 interface ResultCardProps {
   title: string;

@@ -4,8 +4,8 @@ import { useEffect } from 'react';
 
 import { useRouter } from 'next/navigation';
 
-import TopNavigation from '@/app/_components/layout/TopNavigation';
 import { useRestaurantPickCount } from '@/app/events/[eventId]/_hooks/useRestaurantPickCount';
+import TopNavigation from '@/components/layout/TopNavigation';
 
 const RestaurantsNavigation = ({ eventId }: { eventId: string }) => {
   const router = useRouter();

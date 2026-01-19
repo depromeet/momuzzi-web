@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 import { ChevronDown, ChevronUp } from 'lucide-react';
 
-import { cn } from '@/app/_lib/cn';
+import { cn } from '@/lib/cn';
 
 import { convertTo12HourFormat } from '../_utils/timeFormat';
 

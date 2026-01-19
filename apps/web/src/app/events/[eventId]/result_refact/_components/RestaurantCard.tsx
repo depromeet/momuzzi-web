@@ -1,8 +1,8 @@
 import { MapPin, MapPinned, Send } from 'lucide-react';
 import Image from 'next/image';
 
-import { cn } from '@/app/_lib/cn';
 import { Restaurant } from '@/app/events/[eventId]/result_refact/_models/result';
+import { cn } from '@/lib/cn';
 
 const colors = [
   {

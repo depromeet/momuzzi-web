@@ -1,4 +1,4 @@
-import TopNavigation from '@/app/_components/layout/TopNavigation';
+import TopNavigation from '@/components/layout/TopNavigation';
 
 const AnalysisLayout = async ({
   children,

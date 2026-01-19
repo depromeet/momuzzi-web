@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 
-import Loading from '@/app/_components/ui/Loading';
+import Loading from '@/components/ui/Loading';
 
 import { CreatePageLayout, CreatePageClient } from './_components';
 

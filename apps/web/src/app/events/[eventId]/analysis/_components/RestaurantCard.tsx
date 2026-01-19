@@ -4,9 +4,9 @@ import { useMemo, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 
-import { RecommendedPlace } from '@/app/_services/place';
 import PickRankBadge from '@/app/events/[eventId]/_components/PickRankBadge';
 import RestaurantCardContent from '@/app/events/[eventId]/_components/RestaurantCardContent';
+import { RecommendedPlace } from '@/services/place';
 
 const DEFAULT_IMAGE = 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1080&q=80';
 

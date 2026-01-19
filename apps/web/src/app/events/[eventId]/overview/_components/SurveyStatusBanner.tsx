@@ -2,9 +2,9 @@
 
 import { useMemo } from 'react';
 
-import { cn } from '@/app/_lib/cn';
-import { MeetingOverview } from '@/app/_services/overview';
 import useOverviewState from '@/app/events/[eventId]/overview/_hooks/useOverviewState';
+import { cn } from '@/lib/cn';
+import { MeetingOverview } from '@/services/overview';
 
 interface SurveyStatusBannerProps {
   overview: MeetingOverview;

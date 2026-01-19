@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-import { surveyApi } from '@/app/_services/survey/api';
+import { surveyApi } from '@/services/survey/api';
 
 import type { FoodCategory } from '@/app/survey/_models/types';
 

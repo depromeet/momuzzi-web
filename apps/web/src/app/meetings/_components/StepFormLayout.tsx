@@ -1,5 +1,5 @@
-import { TitleGroup } from '@/app/_components/typography';
-import Button from '@/app/_components/ui/Button';
+import { TitleGroup } from '@/components/typography';
+import Button from '@/components/ui/Button';
 
 interface StepFormLayoutProps {
   title: string;

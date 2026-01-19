@@ -4,11 +4,11 @@ import { useEffect, useMemo, useTransition } from 'react';
 
 import { useParams, useRouter } from 'next/navigation';
 
-import Button from '@/app/_components/ui/Button';
-import Loading from '@/app/_components/ui/Loading';
-import { useCountdownDisplay } from '@/app/_hooks/useCountdownDisplay';
-import { MeetingOverview } from '@/app/_services/overview';
 import useOverviewState from '@/app/events/[eventId]/overview/_hooks/useOverviewState';
+import Button from '@/components/ui/Button';
+import Loading from '@/components/ui/Loading';
+import { useCountdownDisplay } from '@/hooks/useCountdownDisplay';
+import { MeetingOverview } from '@/services/overview';
 
 const SurveyActionButton = ({ overview }: { overview: MeetingOverview }) => {
   const router = useRouter();

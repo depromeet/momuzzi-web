@@ -5,10 +5,10 @@ import { useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'next/navigation';
 
-import { cn } from '@/app/_lib/cn';
-import { getOverviewQueryOptions } from '@/app/_queries/overviewQueries';
 import { PIE_GRADIENTS } from '@/app/events/[eventId]/analysis/_components/PieChart/chart';
 import { buildPreferenceSummary } from '@/app/events/[eventId]/analysis/_utils';
+import { getOverviewQueryOptions } from '@/data/queries/overviewQueries';
+import { cn } from '@/lib/cn';
 
 const MenuPreferenceList = () => {
   const params = useParams();

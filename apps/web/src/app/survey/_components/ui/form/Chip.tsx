@@ -1,7 +1,7 @@
 'use client';
 
-import { Text } from '@/app/_components/typography';
-import { cn } from '@/app/_lib/cn';
+import { Text } from '@/components/typography';
+import { cn } from '@/lib/cn';
 
 type ChipVariant = 'any' | 'cuisine';
 

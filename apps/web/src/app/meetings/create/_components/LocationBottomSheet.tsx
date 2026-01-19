@@ -2,11 +2,11 @@
 
 import { useEffect, useMemo, useState } from 'react';
 
-import BottomSheet from '@/app/_components/ui/BottomSheet';
-import Input from '@/app/_components/ui/Input';
-import { useInputState } from '@/app/_hooks/useInputState';
-import { stationsApi } from '@/app/_services/stations';
 import { Station } from '@/app/meetings/create/_models/types';
+import BottomSheet from '@/components/ui/BottomSheet';
+import Input from '@/components/ui/Input';
+import { useInputState } from '@/hooks/useInputState';
+import { stationsApi } from '@/services/stations';
 
 import LocationItem from './LocationItem';
 

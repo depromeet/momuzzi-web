@@ -5,10 +5,10 @@ import { useState } from 'react';
 import { EffectCoverflow } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { cn } from '@/app/_lib/cn';
-import { RecommendedPlace } from '@/app/_services/place';
 import PickRankBadge from '@/app/events/[eventId]/_components/PickRankBadge';
 import RestaurantCardContent from '@/app/events/[eventId]/_components/RestaurantCardContent';
+import { cn } from '@/lib/cn';
+import { RecommendedPlace } from '@/services/place';
 
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';

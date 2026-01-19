@@ -4,9 +4,9 @@ import { useEffect, useMemo, useState } from 'react';
 
 import { motion } from 'framer-motion';
 
-import TopNavigation from '@/app/_components/layout/TopNavigation';
 import FanCard from '@/app/events/[eventId]/result_refact/_components/RestaurantCard';
 import { Restaurant } from '@/app/events/[eventId]/result_refact/_models/result';
+import TopNavigation from '@/components/layout/TopNavigation';
 
 const ANGLE_STEP = 15; // 부채꼴 각도 간격(도)
 const FAN_SPREAD = 120; // 부채꼴 가로 벌어짐(px)

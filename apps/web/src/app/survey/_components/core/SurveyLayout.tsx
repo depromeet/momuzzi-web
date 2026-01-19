@@ -1,8 +1,8 @@
 'use client';
 
-import TopNavigation from '@/app/_components/layout/TopNavigation';
-import StepIndicator from '@/app/_components/ui/StepIndicator';
-import { cn } from '@/app/_lib/cn';
+import TopNavigation from '@/components/layout/TopNavigation';
+import StepIndicator from '@/components/ui/StepIndicator';
+import { cn } from '@/lib/cn';
 
 interface SurveyLayoutProps {
   /** 1-base 현재 스텝 값 (StepIndicator 와 동일 기준)*/

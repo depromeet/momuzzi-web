@@ -1,15 +1,15 @@
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
 import Image from 'next/image';
 
-import { Heading } from '@/app/_components/typography';
-import { getOverviewQueryOptions } from '@/app/_queries/overviewQueries';
-import { getPlacesQueryOptions } from '@/app/_queries/placeQueries';
-import { MeetingOverview } from '@/app/_services/overview';
 import MorePicksButton from '@/app/events/[eventId]/_components/MorePicksButton';
 import MenuPreferenceList from '@/app/events/[eventId]/analysis/_components/MenuPreferenceList';
 import PieChart from '@/app/events/[eventId]/analysis/_components/PieChart';
 import RestaurantCardSwiper from '@/app/events/[eventId]/analysis/_components/RestaurantCardSwiper';
 import { buildPreferenceSummary } from '@/app/events/[eventId]/analysis/_utils';
+import { Heading } from '@/components/typography';
+import { getOverviewQueryOptions } from '@/data/queries/overviewQueries';
+import { getPlacesQueryOptions } from '@/data/queries/placeQueries';
+import { MeetingOverview } from '@/services/overview';
 
 interface AnalysisPageProps {
   params: Promise<{

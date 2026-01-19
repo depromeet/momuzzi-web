@@ -3,13 +3,13 @@ import { Suspense } from 'react';
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
 import { redirect } from 'next/navigation';
 
-import { ApiError } from '@/app/_models/api';
-import { getOverviewQueryOptions } from '@/app/_queries/overviewQueries';
-import { MeetingOverview } from '@/app/_services/overview';
-import { isAccessDenied } from '@/app/_utils/errorGuards';
 import { validateTokenAndJoin } from '@/app/events/[eventId]/_utils/meetingValidation';
 import OverviewSkeleton from '@/app/events/[eventId]/overview/_components/Skeleton';
 import OverviewClient from '@/app/events/[eventId]/overview/OverviewClient';
+import { ApiError } from '@/data/models/api';
+import { getOverviewQueryOptions } from '@/data/queries/overviewQueries';
+import { MeetingOverview } from '@/services/overview';
+import { isAccessDenied } from '@/utils/errorGuards';
 
 interface OverviewPageProps {
   params: Promise<{ eventId: string }>;

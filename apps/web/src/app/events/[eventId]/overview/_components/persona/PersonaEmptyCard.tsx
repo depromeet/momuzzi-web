@@ -4,8 +4,8 @@ import { Copy } from 'lucide-react';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
 
-import { cn } from '@/app/_lib/cn';
 import useCopyClipBoard from '@/app/events/[eventId]/_hooks/useCopyClipBoard';
+import { cn } from '@/lib/cn';
 
 interface PersonaEmptyCardProps {
   className?: string;

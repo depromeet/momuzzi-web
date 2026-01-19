@@ -4,9 +4,9 @@ import { Suspense, useEffect } from 'react';
 
 import { useRouter } from 'next/navigation';
 
-import Loading from '@/app/_components/ui/Loading';
-import { exchangeCodeForCookie } from '@/app/_services/auth';
 import { useAuthParams } from '@/app/auth/_hooks/useAuthParams';
+import Loading from '@/components/ui/Loading';
+import { exchangeCodeForCookie } from '@/services/auth';
 
 // 유효한 리다이렉트 경로인지 확인 (Open Redirect 공격 방지)
 const isValidRedirectUrl = (url: string | null): boolean => {

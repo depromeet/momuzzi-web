@@ -3,9 +3,9 @@ import { useCallback, useEffect, useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { usePathname, useSearchParams } from 'next/navigation';
 
-import { useToast } from '@/app/_features/toast';
-import { initKakaoSDK, shareKakaoLink } from '@/app/_lib/kakao';
-import { getInviteTokenQueryOptions } from '@/app/_queries/inviteToken';
+import { getInviteTokenQueryOptions } from '@/data/queries/inviteToken';
+import { useToast } from '@/features/toast';
+import { initKakaoSDK, shareKakaoLink } from '@/lib/kakao';
 
 interface UseCopyClipBoardProps {
   meetingId: number;

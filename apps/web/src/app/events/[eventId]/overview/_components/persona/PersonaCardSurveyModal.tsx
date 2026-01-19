@@ -5,12 +5,12 @@ import { Suspense } from 'react';
 import Image from 'next/image';
 import { createPortal } from 'react-dom';
 
-import AvatarIcon from '@/app/_components/ui/AvatarIcon';
-import BottomSheet from '@/app/_components/ui/BottomSheet';
-import { getCuisineImageSrc } from '@/app/_constants/cuisine';
-import { MeetingParticipant } from '@/app/_services/overview';
 import Chip from '@/app/survey/_components/ui/form/Chip';
 import { useSurveyCategories } from '@/app/survey/_hooks/useSurveyCategories';
+import AvatarIcon from '@/components/ui/AvatarIcon';
+import BottomSheet from '@/components/ui/BottomSheet';
+import { getCuisineImageSrc } from '@/data/constants/cuisine';
+import { MeetingParticipant } from '@/services/overview';
 
 /**
  * PersonaCardSurveyModal

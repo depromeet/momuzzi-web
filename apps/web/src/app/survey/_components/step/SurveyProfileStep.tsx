@@ -2,12 +2,12 @@
 
 import { useState } from 'react';
 
-import Input from '@/app/_components/ui/Input';
-import Loading from '@/app/_components/ui/Loading';
-import { surveyApi } from '@/app/_services/survey/api';
 import StepFormLayout from '@/app/survey/_components/ui/form/StepFormLayout';
 import ProfileSelector from '@/app/survey/_components/ui/selector/ProfileSelector';
 import { useProfileValidation } from '@/app/survey/_hooks/useProfileValidation';
+import Input from '@/components/ui/Input';
+import Loading from '@/components/ui/Loading';
+import { surveyApi } from '@/services/survey/api';
 
 interface SurveyProfileStepProps {
   onNext: (payload: { name: string; profileKey: string }) => Promise<void> | void;

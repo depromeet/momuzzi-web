@@ -5,14 +5,14 @@ import { useEffect, useMemo, useRef } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'next/navigation';
 
-import { ApiError } from '@/app/_models/api';
-import { getPlacesQueryOptions } from '@/app/_queries/placeQueries';
-import { RecommendedPlaceResponse } from '@/app/_services/place';
 import MorePicksButton from '@/app/events/[eventId]/_components/MorePicksButton';
 import { TOP_RESTAURANT_COUNT } from '@/app/events/[eventId]/_constants/restaurants';
 import { useRestaurantPickCount } from '@/app/events/[eventId]/_hooks/useRestaurantPickCount';
 import RestaurantCard from '@/app/events/[eventId]/restaurants/_components/RestaurantCard';
 import RestaurantsSwiper from '@/app/events/[eventId]/restaurants/_components/RestaurantSwiper';
+import { ApiError } from '@/data/models/api';
+import { getPlacesQueryOptions } from '@/data/queries/placeQueries';
+import { RecommendedPlaceResponse } from '@/services/place';
 
 const NAVIGATION_HEIGHT = '3.5rem';
 

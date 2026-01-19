@@ -1,4 +1,4 @@
-import { CuisineId } from '@/app/_constants/cuisine';
+import { CuisineId } from '@/data/constants/cuisine';
 
 // 빠른 탐색을 위해 레코드 타입 사용
 

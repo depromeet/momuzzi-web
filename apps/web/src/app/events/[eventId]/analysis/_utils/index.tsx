@@ -1,10 +1,10 @@
-import { CUISINE_MAP } from '@/app/_constants/cuisine';
-import { MeetingParticipant, MenuItem } from '@/app/_services/overview';
 import {
   CurrentUserSelection,
   LeafCountPerMain,
   MainCount,
 } from '@/app/events/[eventId]/analysis/_models';
+import { CUISINE_MAP } from '@/data/constants/cuisine';
+import { MeetingParticipant, MenuItem } from '@/services/overview';
 
 /** 표시명을 살짝 정제 (예: "동남아 음식" -> "동남아") */
 const normalizeMainName = (name: string) => name.replace(/음식$/, '').trim();

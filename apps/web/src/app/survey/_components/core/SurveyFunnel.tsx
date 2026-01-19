@@ -4,13 +4,13 @@ import { useState } from 'react';
 
 import { useRouter } from 'next/navigation';
 
-import { surveyApi } from '@/app/_services/survey/api';
 import SurveyLayout from '@/app/survey/_components/core/SurveyLayout';
 import SurveyCuisineStep from '@/app/survey/_components/step/SurveyCuisineStep';
 import SurveyProfileStep from '@/app/survey/_components/step/SurveyProfileStep';
 import ConfirmModal from '@/app/survey/_components/ui/modal/ConfirmModal';
 import { useSurveyFunnel } from '@/app/survey/_hooks/useSurveyFunnel';
 import { getPrevStepKey, SURVEY_TOTAL_STEPS } from '@/app/survey/_models/constants';
+import { surveyApi } from '@/services/survey/api';
 
 import type { RoleLabel, SurveyResult } from '@/app/survey/_models/types';
 

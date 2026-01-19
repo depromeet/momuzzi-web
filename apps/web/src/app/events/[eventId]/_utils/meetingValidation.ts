@@ -1,8 +1,8 @@
 import { redirect } from 'next/navigation';
 
-import { ApiError } from '@/app/_models/api';
-import { meetingsApi } from '@/app/_services/meetings';
-import { isAccessDenied, isAlreadyJoined } from '@/app/_utils/errorGuards';
+import { ApiError } from '@/data/models/api';
+import { meetingsApi } from '@/services/meetings';
+import { isAccessDenied, isAlreadyJoined } from '@/utils/errorGuards';
 
 /**
  * 초대 토큰 검증 및 모임 참여 처리

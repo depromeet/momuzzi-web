@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 
-import { cn } from '@/app/_lib/cn';
+import { cn } from '@/lib/cn';
 
 const PROVIDER_CONFIG = {
   kakao: {

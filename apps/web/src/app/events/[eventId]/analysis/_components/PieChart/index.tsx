@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import { PieChart as RechartsPieChart, Pie, Cell } from 'recharts';
 
-import { cn } from '@/app/_lib/cn';
+import { cn } from '@/lib/cn';
 
 import { CHART_THEME, PIE_GRADIENTS } from './chart';
 

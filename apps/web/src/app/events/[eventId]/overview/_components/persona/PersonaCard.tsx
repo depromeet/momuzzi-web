@@ -5,11 +5,11 @@ import { useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
 
-import AvatarIcon from '@/app/_components/ui/AvatarIcon';
-import { getCuisineImageSrc } from '@/app/_constants/cuisine';
-import { CuisineCategory, MeetingParticipant } from '@/app/_services/overview';
 import PersonaCardLockedOverlay from '@/app/events/[eventId]/overview/_components/persona/PersonaCardLockedOverlay';
 import PersonaCardSurveyModal from '@/app/events/[eventId]/overview/_components/persona/PersonaCardSurveyModal';
+import AvatarIcon from '@/components/ui/AvatarIcon';
+import { getCuisineImageSrc } from '@/data/constants/cuisine';
+import { CuisineCategory, MeetingParticipant } from '@/services/overview';
 
 interface PersonaCardProps {
   participant: MeetingParticipant;

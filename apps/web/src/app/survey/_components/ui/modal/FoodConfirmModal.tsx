@@ -5,7 +5,7 @@ import { useMemo } from 'react';
 import { X } from 'lucide-react';
 import Image from 'next/image';
 
-import { cn } from '@/app/_lib/cn';
+import { cn } from '@/lib/cn';
 
 interface FoodConfirmModalProps {
   open: boolean;

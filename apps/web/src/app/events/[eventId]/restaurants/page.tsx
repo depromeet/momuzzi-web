@@ -1,8 +1,8 @@
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
 
-import { Heading } from '@/app/_components/typography';
-import { getPlacesQueryOptions } from '@/app/_queries/placeQueries';
 import RestaurantsClient from '@/app/events/[eventId]/restaurants/RestaurantsClient';
+import { Heading } from '@/components/typography';
+import { getPlacesQueryOptions } from '@/data/queries/placeQueries';
 
 interface RestaurantsPageProps {
   params: Promise<{ eventId: string }>;

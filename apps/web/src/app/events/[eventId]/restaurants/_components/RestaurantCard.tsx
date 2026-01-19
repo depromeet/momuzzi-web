@@ -1,7 +1,7 @@
 'use client';
 
-import { RecommendedPlace } from '@/app/_services/place';
 import RestaurantCardContent from '@/app/events/[eventId]/_components/RestaurantCardContent';
+import { RecommendedPlace } from '@/services/place';
 
 interface RestaurantCardProps {
   restaurant: RecommendedPlace;

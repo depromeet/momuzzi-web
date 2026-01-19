@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import Button from '@/app/_components/ui/Button';
+import Button from '@/components/ui/Button';
 
 const NotFoundPage = () => {
   return (

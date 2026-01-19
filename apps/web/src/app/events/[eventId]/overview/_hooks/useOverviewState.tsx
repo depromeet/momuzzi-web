@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { MeetingOverview } from '@/app/_services/overview';
+import { MeetingOverview } from '@/services/overview';
 
 /**
  * 모임 오버뷰 상태를 관리하는 훅

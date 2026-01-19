@@ -5,13 +5,13 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Heart, MapPin, Send, Star } from 'lucide-react';
 import { useParams, useRouter } from 'next/navigation';
 
-import { ReviewModal } from '@/app/_components/ui/Modal';
-import { useToast } from '@/app/_features/toast';
-import { cn } from '@/app/_lib/cn';
-import { usePlaceLikeMutation } from '@/app/_queries/placeQueries';
-import { RecommendedPlace } from '@/app/_services/place';
 import { CARD_UI } from '@/app/events/[eventId]/_components/RestaurantCardContent/restaurantCardThemes';
 import RestaurantImageGallery from '@/app/events/[eventId]/_components/RestaurantCardContent/RestaurantImageGallery';
+import { ReviewModal } from '@/components/ui/Modal';
+import { usePlaceLikeMutation } from '@/data/queries/placeQueries';
+import { useToast } from '@/features/toast';
+import { cn } from '@/lib/cn';
+import { RecommendedPlace } from '@/services/place';
 
 interface RestaurantCardContentProps {
   place: RecommendedPlace;

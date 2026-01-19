@@ -2,10 +2,10 @@
 
 import Link from 'next/link';
 
-import Button from '@/app/_components/ui/Button';
-import { cn } from '@/app/_lib/cn';
 import { ADDITIONAL_RESTAURANT_COUNT } from '@/app/events/[eventId]/_constants/restaurants';
 import { useRestaurantPickCount } from '@/app/events/[eventId]/_hooks/useRestaurantPickCount';
+import Button from '@/components/ui/Button';
+import { cn } from '@/lib/cn';
 
 interface MorePicksButtonProps {
   showHomeButton?: boolean;

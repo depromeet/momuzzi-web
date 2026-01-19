@@ -7,12 +7,12 @@ import { ListIcon } from 'lucide-react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 
-import { cn } from '@/app/_lib/cn';
-import { ApiError } from '@/app/_models/api';
-import { getPlacesQueryOptions } from '@/app/_queries/placeQueries';
-import { RecommendedPlaceResponse } from '@/app/_services/place';
 import { useRestaurantPickCount } from '@/app/events/[eventId]/_hooks/useRestaurantPickCount';
 import RestaurantCard from '@/app/events/[eventId]/analysis/_components/RestaurantCard';
+import { ApiError } from '@/data/models/api';
+import { getPlacesQueryOptions } from '@/data/queries/placeQueries';
+import { cn } from '@/lib/cn';
+import { RecommendedPlaceResponse } from '@/services/place';
 
 const RestaurantCardSwiper = () => {
   const params = useParams();

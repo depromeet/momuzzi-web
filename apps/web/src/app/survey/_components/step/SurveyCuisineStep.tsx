@@ -4,14 +4,14 @@ import { useState, useEffect, useMemo } from 'react';
 
 import Image from 'next/image';
 
-import Loading from '@/app/_components/ui/Loading';
-import { getCuisineImageSrc } from '@/app/_constants/cuisine';
-import { FOOD_MAP } from '@/app/_constants/menu';
 import ChipGroupMultiSelect from '@/app/survey/_components/ui/form/ChipGroupMultiSelect';
 import StepFormLayout from '@/app/survey/_components/ui/form/StepFormLayout';
 import FoodConfirmModal from '@/app/survey/_components/ui/modal/FoodConfirmModal';
 import { useSurveyCategories } from '@/app/survey/_hooks/useSurveyCategories';
 import { ANY_ID } from '@/app/survey/_models/constants';
+import Loading from '@/components/ui/Loading';
+import { getCuisineImageSrc } from '@/data/constants/cuisine';
+import { FOOD_MAP } from '@/data/constants/menu';
 
 import type { FunnelHistory, FoodCategory, CommonCtx } from '@/app/survey/_models/types';
 

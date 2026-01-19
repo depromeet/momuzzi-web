@@ -1,4 +1,4 @@
-import { cn } from '@/app/_lib/cn';
+import { cn } from '@/lib/cn';
 
 interface PickRankBadgeProps {
   rank: number;
