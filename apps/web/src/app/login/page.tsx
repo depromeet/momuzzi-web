@@ -6,29 +6,23 @@ const LoginPage = async ({ searchParams }: { searchParams: Promise<{ redirectTo?
   const { redirectTo } = await searchParams;
 
   return (
-    <div className="flex h-[100dvh] w-full flex-col items-center justify-center px-5 gathering-card">
-      <main className="flex flex-col justify-between gap-6 pt-15 pb-10">
-        <div className="flex flex-col items-center gap-4">
+    <div className="flex h-[100dvh] w-full flex-col items-center gathering-card">
+      <div className="flex w-full max-w-[375px] flex-1 items-center justify-center">
+        <main className="flex flex-col items-center gap-4">
           <Image
-            src={'/images/momuzzi-wordmark.svg'}
-            alt="모무찌 워드마크 아이콘"
-            width={174}
-            height={74}
+            src={'/images/ssolv-wordmark.svg'}
+            alt="Ssolv 워드마크 아이콘"
+            width={183}
+            height={68}
             priority
           />
           <p className="body-3 text-neutral-1200">바로 추천받는 우리 모임의 식당</p>
-        </div>
+        </main>
+      </div>
 
-        <Image
-          src={'/images/momuzzi-group.svg'}
-          alt="모무찌 그룹 아이콘"
-          width={240}
-          height={262}
-          priority
-        />
-      </main>
-
-      <LoginButton redirectTo={redirectTo} />
+      <div className="w-full px-5 pb-14">
+        <LoginButton redirectTo={redirectTo} />
+      </div>
     </div>
   );
 };

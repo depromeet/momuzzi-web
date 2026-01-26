@@ -49,7 +49,7 @@ const LoginButton = ({ provider = 'kakao', redirectTo }: LoginButtonProps) => {
       aria-label={config.text}
       onClick={handleLogin}
       className={cn(
-        'flex h-[62px] w-full cursor-pointer items-center justify-center gap-2 rounded-[14px] p-[10px] body-3 font-semibold transition-all duration-200',
+        'flex h-[62px] w-full cursor-pointer items-center justify-center gap-2 rounded-[14px] p-[10px] body-3 font-semibold text-neutral-1600 transition-all duration-200',
         config.className
       )}
     >
