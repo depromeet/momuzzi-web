@@ -92,14 +92,18 @@ const CreatePageClient = () => {
             onTimeChange={meetingForm.setTime}
           />
 
-          <span className="flex items-center justify-center rounded-sm bg-orange-500/[0.08] p-3 label-2 text-xs font-medium text-neutral-700 select-none">
+          <span className="flex items-center justify-center rounded-sm bg-neutral-100 p-3 label-2 text-xs font-medium text-neutral-700 select-none">
             식당 추천 시간까지 모임원의 식사 취향 설문이 가능합니다.
           </span>
         </div>
       </FormSection>
 
       <footer className="sticky bottom-0 pb-6">
-        <Button onClick={handleSubmit} status={isDisabled ? 'disabled' : 'normal'}>
+        <Button
+          theme="orange-light"
+          onClick={handleSubmit}
+          status={isDisabled ? 'disabled' : 'normal'}
+        >
           {isLoading ? '모임 생성 중...' : '모임 생성하기'}
         </Button>
       </footer>
